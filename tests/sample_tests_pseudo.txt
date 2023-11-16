@@ -1,0 +1,75 @@
+l = list(range(2, 1000))
+FOREACH i IN l
+    FOR k = 2 TO i
+        IF i MOD k == 0
+            break
+        ENDIF
+    NEXT k
+    ELSE
+        OUTPUT i, end=", " //  comment
+NEXT i
+
+OUTPUT "2 % 4 != 0"
+OUTPUT "This is true"
+
+FUNCTION dec_to_hex(denary int) -> str
+    hexadecimal = ""
+    WHILE denary > 0
+        hexadecimal = digit_to_hex(denary%16) + hexadecimal
+        denary //= 16
+    ENDWHILE
+    RETURN hexadecimal
+ENDFUNCTION
+
+
+FUNCTION digit_to_hex(digit int) -> str
+    hex_digits = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F"]
+    RETURN hex_digits[digit-1]
+ENDFUNCTION
+
+
+OUTPUT "334 in hexadecimal is", dec_to_hex(334)
+
+FUNCTION alt_caps(s str, current_index int=0) -> str
+    IF current_index == LENGTH(s)
+        RETURN ""
+    ENDIF
+    IF current_index MOD 2 == 0
+        RETURN s[current_index].upper() + alt_caps(s, current_index+1)
+    ELSE
+        RETURN s[current_index].lower() + alt_caps(s, current_index+1)
+    ENDIF
+ENDFUNCTION
+OUTPUT alt_caps("cheese")
+
+FUNCTION my_func()
+    OUTPUT "for i in range()", "2 % 4 != 0"
+    OUTPUT "OUTPUT 'Thing'" //  comment
+ENDFUNCTION
+
+my_func()
+var = "abc"
+OUTPUT LENGTH(var)
+var2 = "print('doejofn')"
+
+SWITCH var
+    CASE "cba"
+        OUTPUT "execution"
+    CASE "abc"
+        TRY
+            raise Exception
+        CATCH Exception
+            OUTPUT "Something went wrong"
+        FINALLY
+            OUTPUT "execute"
+    DEFAULT 
+        OUTPUT "wildcard"
+ENDSWITCH
+
+/*big string*/
+/*_summary_
+"docstring"
+docstring
+*/
+OUTPUT Null
+PASS
